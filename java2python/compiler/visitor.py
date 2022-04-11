@@ -54,13 +54,13 @@ class Base(object):
             # loop over parents until we find the top expression
             base = tmpl
             while base:
-                if base and base.parent and base.parent.isExpression:
+                if base.parent and base.parent.isExpression:
                     base = base.parent
                 else:
                     break
 
             if hasattr(base, 'tail') and tok.line==parser.input.tokens[index].line:
-                base.tail += prefix if not base.tail.startswith(prefix) else ''
+                base.tail += '' if base.tail.startswith(prefix) else prefix
                 base.tail += ''.join(self.stripComment(tok.text))
             else:
                 for line in self.stripComment(tok.text):
@@ -80,8 +80,7 @@ class Base(object):
         memo = Memo() if memo is None else memo
         comIns = self.insertComments
         comIns(self, tree, tree.tokenStartIndex, memo)
-        visitor = self.accept(tree, memo)
-        if visitor:
+        if visitor := self.accept(tree, memo):
             for child in tree.children:
                 visitor.walk(child, memo)
                 comIns(visitor, child, child.tokenStopIndex, memo)
@@ -120,7 +119,7 @@ class TypeAcceptor(object):
             """ Creates and returns a new template for a type. """
             try:
                 name = node.firstChildOfType(tokens.IDENT).text
-            except (AttributeError, ):
+            except AttributeError:
                 return
             self.variables.append(name)
             return getattr(self.factory, ft)(name=name, parent=self)
@@ -146,8 +145,7 @@ class Module(TypeAcceptor, Base):
             """ Processes a decl by creating a new template expression. """
             expr = self.factory.expr()
             expr.walk(node.firstChild(), memo)
-            handler = self.configHandler(part)
-            if handler:
+            if handler := self.configHandler(part):
                 handler(self, expr)
         return acceptDecl
 
@@ -174,8 +172,7 @@ class ModifiersAcceptor(object):
         if not init:
             deco = self.factory.expr(left=name, fs='@{left}()')
         else:
-            defKey = init.firstChildOfType(tokens.ANNOTATION_INIT_DEFAULT_KEY)
-            if defKey:
+            if defKey := init.firstChildOfType(tokens.ANNOTATION_INIT_DEFAULT_KEY):
                 deco = self.factory.expr(left=name, fs='@{left}({right})')
                 deco.right = right = self.factory.expr(parent=deco)
                 right.walk(defKey.firstChild(), memo)
@@ -222,21 +219,23 @@ class VarAcceptor(object):
             if declExp:
                 assgnExp.walk(declExp, memo)
             elif declArr:
-                assgnExp.right = exp = self.factory.expr(fs='['+FS.lr+']', parent=identExp)
+                assgnExp.right = exp = self.factory.expr(fs=f'[{FS.lr}]', parent=identExp)
                 children = list(declArr.childrenOfType(tokens.EXPR))
                 for child in children:
-                    fs = FS.lr if child is children[-1] else FS.lr + ', '
+                    fs = FS.lr if child is children[-1] else f'{FS.lr}, '
                     exp.left = self.factory.expr(fs=fs, parent=identExp)
                     exp.left.walk(child, memo)
                     exp.right = exp = self.factory.expr(parent=identExp)
+            elif node.firstChildOfType(tokens.TYPE).firstChildOfType(tokens.ARRAY_DECLARATOR_LIST):
+                val = assgnExp.pushRight('[]')
             else:
-                if node.firstChildOfType(tokens.TYPE).firstChildOfType(tokens.ARRAY_DECLARATOR_LIST):
-                    val = assgnExp.pushRight('[]')
-                else:
-                    if node.firstChildOfType(tokens.TYPE).firstChild().type != tokens.QUALIFIED_TYPE_IDENT:
-                        val = assgnExp.pushRight('{0}()'.format(identExp.type))
-                    else:
-                        val = assgnExp.pushRight('None')
+                val = (
+                    assgnExp.pushRight('{0}()'.format(identExp.type))
+                    if node.firstChildOfType(tokens.TYPE).firstChild().type
+                    != tokens.QUALIFIED_TYPE_IDENT
+                    else assgnExp.pushRight('None')
+                )
+
         return self
 
 
@@ -267,7 +266,7 @@ class Class(VarAcceptor, TypeAcceptor, ModifiersAcceptor, Base):
             # superclass constructor, the Java compiler automatically
             # inserts a call to the no-argument constructor of the
             # superclass.
-            fs = 'super(' + FS.r + ', self).__init__()'
+            fs = f'super({FS.r}, self).__init__()'
             self.factory.expr(fs=fs, right=self.name, parent=method)
         return method
 
@@ -298,7 +297,7 @@ class Annotation(Class):
         args = []
         for child in node.children:
             if child.type == tokens.ANNOTATION_METHOD_DECL:
-                mods, type, ident = child.children[0:3]
+                mods, type, ident = child.children[:3]
                 type, name = type.children[0].text, ident.text
                 meth = self.factory.method(parent=self, name=name, type=type)
                 meth.factory.expr(fs='return self._{left}', parent=meth, left=name)
@@ -345,10 +344,9 @@ class Enum(Class):
         handler = self.configHandler('Value')
         setFs = lambda v:'{0}.{1} = {2}'.format(self.name, v, self.name)
         for index, ident in enumerate(idents):
-            args = list(ident.findChildrenOfType(tokens.ARGUMENT_LIST))
-            if args:
+            if args := list(ident.findChildrenOfType(tokens.ARGUMENT_LIST)):
                 call = factory(left=setFs(ident), parent=self.parent)
-                call.right = arg = factory(fs='('+FS.lr+')')
+                call.right = arg = factory(fs=f'({FS.lr})')
                 argl = ident.firstChildOfType(tokens.ARGUMENT_LIST)
                 exprs = list(argl.findChildrenOfType(tokens.EXPR))
                 for expr in exprs:
@@ -357,7 +355,7 @@ class Enum(Class):
                     arg.left.walk(expr, memo)
                     arg.right = arg = factory()
             else:
-                expr = factory(fs=ident.text+' = '+FS.r, parent=self)
+                expr = factory(fs=f'{ident.text} = {FS.r}', parent=self)
                 expr.pushRight(handler(self, index, ident.text))
         return self
 
@@ -401,7 +399,10 @@ class MethodContent(VarAcceptor, Base):
         if not block.children:
             self.factory.expr(left='pass', parent=self)
         self.expr.fs = FS.lsrc
-        self.expr.right = self.factory.expr(fs=FS.l+' as '+FS.r, left=cname, right=cvar)
+        self.expr.right = self.factory.expr(
+            fs=f'{FS.l} as {FS.r}', left=cname, right=cvar
+        )
+
         self.walk(block, memo)
 
 
@@ -422,7 +423,7 @@ class MethodContent(VarAcceptor, Base):
         whileStat = self.factory.statement('while', fs=FS.lsrc, parent=self)
         whileStat.expr.right = 'True'
         whileStat.walk(blkNode, memo)
-        fs = FS.l+ ' ' + 'not ({right}):'
+        fs = f'{FS.l} ' + 'not ({right}):'
         ifStat = self.factory.statement('if', fs=fs, parent=whileStat)
         ifStat.expr.walk(parNode, memo)
         breakStat = self.factory.statement('break', parent=ifStat)
@@ -462,7 +463,7 @@ class MethodContent(VarAcceptor, Base):
     def acceptForEach(self, node, memo):
         """ Accept and process a 'for each' style statement. """
         forEach = self.factory.statement('for', fs=FS.lsrc, parent=self)
-        identExpr = forEach.expr.right = self.factory.expr(fs=FS.l+' in '+FS.r)
+        identExpr = forEach.expr.right = self.factory.expr(fs=f'{FS.l} in {FS.r}')
         identExpr.walk(node.firstChildOfType(tokens.IDENT), memo)
         inExpr = identExpr.right = self.factory.expr()
         inExpr.walk(node.firstChildOfType(tokens.EXPR), memo)
@@ -477,11 +478,9 @@ class MethodContent(VarAcceptor, Base):
 
         if node.children[1].type == tokens.EXPR:
             ifBlock = self.factory.expr(parent=ifStat)
-            ifBlock.walk(node.children[1], memo)
         else:
             ifBlock = self.factory.methodContent(parent=self)
-            ifBlock.walk(node.children[1], memo)
-
+        ifBlock.walk(node.children[1], memo)
         if len(children) == 3:
             nextNode = children[2]
             nextType = nextNode.type
@@ -497,7 +496,7 @@ class MethodContent(VarAcceptor, Base):
 
                 try:
                     nextNode = nextNode.children[2]
-                except (IndexError, ):
+                except IndexError:
                     nextType = None
                 else:
                     nextType = nextNode.type
@@ -529,7 +528,7 @@ class MethodContent(VarAcceptor, Base):
         # we have at least one node...
         parExpr = self.factory.expr(parent=self)
         parExpr.walk(parNode, memo)
-        eqFs = FS.l + ' == ' + FS.r
+        eqFs = f'{FS.l} == {FS.r}'
         for caseIdx, caseNode in enumerate(caseNodes):
             isDefault, isFirst = caseNode.type==tokens.DEFAULT, caseIdx==0
 
@@ -537,7 +536,7 @@ class MethodContent(VarAcceptor, Base):
                 caseExpr = self.factory.statement('if', fs=FS.lsrc, parent=self)
             elif not isDefault:
                 caseExpr = self.factory.statement('elif', fs=FS.lsrc, parent=self)
-            elif isDefault:
+            else:
                 caseExpr = self.factory.statement('else', fs=FS.lc, parent=self)
 
             if not isDefault:
@@ -663,7 +662,7 @@ class Expression(Base):
     def nodeOpExpr(self, node, memo):
         """ Accept and processes an operator expression. """
         factory = self.factory.expr
-        self.fs = FS.l + ' ' + node.text + ' ' + FS.r
+        self.fs = f'{FS.l} {node.text} {FS.r}'
         self.left, self.right = visitors = factory(parent=self), factory(parent=self)
         self.zipWalk(node.children, visitors, memo)
 
@@ -725,13 +724,11 @@ class Expression(Base):
 
         if typeName in tokens.primitiveTypeNames:
             # Cast using the primitive type constructor
-            self.fs = typeName + '(' + FS.r + ')'
+            self.fs = f'{typeName}({FS.r})'
+        elif handler := self.configHandler('Cast'):
+            handler(self, node)
         else:
-            handler = self.configHandler('Cast')
-            if handler:
-                handler(self, node)
-            else:
-                warn('No handler to perform cast of non-primitive type %s.', typeName)
+            warn('No handler to perform cast of non-primitive type %s.', typeName)
         self.left, self.right = visitors = factory(parent=self), factory(parent=self)
         self.zipWalk(node.children, visitors, memo)
 
@@ -748,7 +745,7 @@ class Expression(Base):
                     left = name
                 else:
                     left = rename
-                    block.adopt(factory(fs=FS.l+' = '+FS.r, left=rename, right=name))
+                    block.adopt(factory(fs=f'{FS.l} = {FS.r}', left=left, right=name))
                 self.left = factory(parent=self, fs=FS.l, left=left)
                 block.adopt(factory(fs=FS.l + suffix, left=name))
             else:
@@ -765,7 +762,7 @@ class Expression(Base):
     def acceptBitShiftRight(self, node, memo):
         """ Accept and process a bit shift right expression. """
         factory = self.factory.expr
-        self.fs = 'bsr(' + FS.l + ', ' + FS.r + ')'
+        self.fs = f'bsr({FS.l}, {FS.r})'
         self.left, self.right = visitors = factory(parent=self), factory()
         self.zipWalk(node.children, visitors, memo)
         module = self.parents(lambda x:x.isModule).next()
@@ -774,7 +771,7 @@ class Expression(Base):
     def acceptBitShiftRightAssign(self, node, memo):
         """ Accept and process a bit shift right expression with assignment. """
         factory = self.factory.expr
-        self.fs = FS.l + ' = bsr(' + FS.l + ', ' + FS.r + ')'
+        self.fs = f'{FS.l} = bsr({FS.l}, {FS.r})'
         self.left, self.right = visitors = factory(parent=self), factory()
         self.zipWalk(node.children, visitors, memo)
         module = self.parents(lambda x:x.isModule).next()
@@ -791,7 +788,7 @@ class Expression(Base):
     def acceptDot(self, node, memo):
         """ Accept and process a dotted expression. """
         expr = self.factory.expr
-        self.fs = FS.l + '.' + FS.r
+        self.fs = f'{FS.l}.{FS.r}'
         self.left, self.right = visitors = expr(parent=self), expr()
         self.zipWalk(node.children, visitors, memo)
 
@@ -815,7 +812,7 @@ class Expression(Base):
         """ Accept and process a method call. """
         # NB: this creates one too many expression levels.
         expr = self.factory.expr
-        self.fs = FS.l + '(' + FS.r + ')'
+        self.fs = f'{FS.l}({FS.r})'
         self.left = expr(parent=self)
         self.left.walk(node.firstChild(), memo)
         children = node.firstChildOfType(tokens.ARGUMENT_LIST).children
@@ -836,7 +833,7 @@ class Expression(Base):
     def acceptParentesizedExpr(self, node, memo):
         if node.parent.type not in self.skipParensParents:
             right = self.pushRight()
-            right.fs = '(' + FS.lr + ')'
+            right.fs = f'({FS.lr})'
             return right
         return self
 
@@ -859,7 +856,7 @@ class Expression(Base):
     def acceptSuperConstructorCall(self, node, memo):
         """ Accept and process a super constructor call. """
         cls = self.parents(lambda c:c.isClass).next()
-        fs = 'super(' + FS.l + ', self).__init__(' + FS.r + ')'
+        fs = f'super({FS.l}, self).__init__({FS.r})'
         self.right = self.factory.expr(fs=fs, left=cls.name)
         return self.right
 
@@ -870,9 +867,9 @@ class Expression(Base):
     def acceptQuestion(self, node, memo):
         """ Accept and process a terinary expression. """
         expr = self.factory.expr
-        self.fs = FS.l + ' if ' + FS.r
+        self.fs = f'{FS.l} if {FS.r}'
         self.left = expr(parent=self)
-        self.right = expr(fs=FS.l+' else '+FS.r, parent=self)
+        self.right = expr(fs=f'{FS.l} else {FS.r}', parent=self)
         self.right.left = expr(parent=self.right)
         self.right.right = expr(parent=self.right)
         visitors = (self.right.left, self.left, self.right.right)

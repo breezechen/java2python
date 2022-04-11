@@ -62,11 +62,9 @@ class Selector(object):
 
     def walk(self, tree):
         """ Select items from the tree and from the tree children. """
-        for item in self(tree):
-            yield item
+        yield from self(tree)
         for child in tree.children:
-            for item in self.walk(child):
-                yield item
+            yield from self.walk(child)
 
 
 class Token(Selector):
@@ -98,17 +96,15 @@ class Token(Selector):
         token = tree.token
 
         def match_or_call(k, v):
-            if callable(v):
-                return v(token)
-            return getattr(token, k)==v
+            return v(token) if callable(v) else getattr(token, k)==v
 
         if all(match_or_call(k, v) for k, v in items if v is not None):
             yield tree
 
     def __str__(self):
         items = self.attrs.items()
-        keys = ('{}={}'.format(k, v) for k, v in items if v is not None)
-        return 'Token({})'.format(', '.join(keys))
+        keys = (f'{k}={v}' for k, v in items if v is not None)
+        return f"Token({', '.join(keys)})"
 
 
 class Nth(Selector):
@@ -124,12 +120,11 @@ class Nth(Selector):
         for etree in self.e(tree):
             try:
                 matches = tree.children[self.key]
-            except (IndexError, ):
+            except IndexError:
                 return
             if not isinstance(matches, (list, )):
                 matches = [matches]
-            for child in matches:
-                yield child
+            yield from matches
 
     def __str__(self):
         return 'Nth({0})[{1}]'.format(self.e, self.key)
@@ -160,9 +155,10 @@ class Type(Selector):
         self.value = value
 
     def __call__(self, tree):
-        if tree.token.type == self.key:
-            if self.value is None or self.value == tree.token.text:
-                yield tree
+        if tree.token.type == self.key and (
+            self.value is None or self.value == tree.token.text
+        ):
+            yield tree
 
     def __str__(self):
         val = '' if self.value is None else '={0}'.format(self.value)
@@ -217,7 +213,7 @@ class AdjacentSibling(Selector):
                 yield ftree
 
     def __str__(self):
-        return 'AdjacentSibling({} + {})'.format(self.e, self.f)
+        return f'AdjacentSibling({self.e} + {self.f})'
 
 
 class AnySibling(Selector):
@@ -238,4 +234,4 @@ class AnySibling(Selector):
                     yield ftree
 
     def __str__(self):
-        return 'AnySibling({} / {})'.format(self.e, self.f)
+        return f'AnySibling({self.e} / {self.f})'

@@ -55,9 +55,7 @@ class overloaded:
         self.default_func = default_func
 
     def __get__(self, obj, type=None):
-        if obj is None:
-            return self
-        return instancemethod(self, obj)
+        return self if obj is None else instancemethod(self, obj)
 
     def register(self, *types):
         """Decorator to register an implementation for a specific set of types.
