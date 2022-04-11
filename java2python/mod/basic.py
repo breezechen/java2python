@@ -154,8 +154,7 @@ def getSyncHelpersSrc():
 
 def maybeBsr(module):
     if getattr(module, 'needsBsrFunc', False):
-        for line in getBsrSrc().split('\n'):
-            yield line
+        yield from getBsrSrc().split('\n')
 
 
 def maybeAbstractHelpers(module):
@@ -165,8 +164,7 @@ def maybeAbstractHelpers(module):
 
 def maybeSyncHelpers(module):
     if getattr(module, 'needsSyncHelpers', False):
-        for line in getSyncHelpersSrc().split('\n'):
-            yield line
+        yield from getSyncHelpersSrc().split('\n')
 
 
 def classContentSort(obj):
@@ -198,8 +196,7 @@ def defaultParams(obj):
 
 def zopeInterfaceMethodParams(obj):
     if not obj.parent.isInterface:
-        for param in obj.parameters:
-            yield param
+        yield from obj.parameters
     else:
         for index, param in enumerate(obj.parameters):
             if index != 0 and param['name'] != 'self':
@@ -231,11 +228,11 @@ def zopeImplementsClassBases(obj):
 def zopeImplementsClassHead(obj):
     if implAny(obj):
         for cls in obj.bases:
-            yield 'zope.interface.implements({})'.format(cls)
+            yield f'zope.interface.implements({cls})'
 
 
 def moveStaticExpressions(cls):
-    name = '{}.'.format(cls.name) # notice the dot
+    name = f'{cls.name}.'
     exprs = [child for child in cls.children if child.isExpression and name in str(child)]
     module = cls.parents(lambda x:x.isModule).next()
     for expr in exprs:
@@ -245,7 +242,7 @@ def moveStaticExpressions(cls):
 
 
 def castCtor(expr, node):
-    expr.fs = FS.l + '(' + FS.r + ')'
+    expr.fs = f'{FS.l}({FS.r})'
 
 
 def castDrop(expr, node):

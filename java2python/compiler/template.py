@@ -48,7 +48,7 @@ class Factory(object):
     def __getattr__(self, name):
         try:
             return partial(self.types[name], self.config)
-        except (KeyError, ):
+        except KeyError:
             raise AttributeError('Factory missing "{0}" type.'.format(name))
 
 
@@ -67,10 +67,10 @@ class FactoryTypeDetector(type):
     type names.
 
     """
-    def __init__(cls, name, bases, namespace):
+    def __init__(self, name, bases, namespace):
         try:
-            Factory.types[cls.factoryName] = cls
-        except (AttributeError, ):
+            Factory.types[self.factoryName] = self
+        except AttributeError:
             pass
 
 
@@ -156,7 +156,7 @@ class Base(object):
             if name in klass.variables:
                 try:
                     method = self.parents(lambda v:v.isMethod).next()
-                except (StopIteration, ):
+                except StopIteration:
                     return name
                 if name in [p['name'] for p in method.parameters]:
                     return name
@@ -221,7 +221,7 @@ class Base(object):
     @property
     def isVoid(self):
         """ True if this item is void. """
-        return 'void' == self.type
+        return self.type == 'void'
 
     def iterPrologue(self):
         """ Yields the items in the prologue of this template. """
@@ -260,8 +260,7 @@ class Base(object):
             if pred(child):
                 yield child
             if hasattr(child, 'find'):
-                for value in child.find(pred):
-                    yield value
+                yield from child.find(pred)
 
     @property
     def className(self):
@@ -276,8 +275,8 @@ class Base(object):
     def toExpr(self, value):
         """ Returns an expression for the given value if it is a string. """
         try:
-            return self.factory.expr(left=value+'')
-        except (TypeError, ):
+            return self.factory.expr(left=f'{value}')
+        except TypeError:
             return value
 
     def toIter(self, value):
@@ -341,7 +340,7 @@ class Expression(Base):
         """ True if this expression is a comment. """
         try:
             return self.left.strip().startswith('#')
-        except (AttributeError, ):
+        except AttributeError:
             return False
 
 
@@ -352,8 +351,13 @@ class Comment(Expression):
 
     def __repr__(self):
         """ Returns the debug string representation of this comment. """
-        parts = [colors.white(self.typeName+':'),
-                 colors.black(self.left) + colors.black(self.right) + colors.black(self.tail), ]
+        parts = [
+            colors.white(f'{self.typeName}:'),
+            colors.black(self.left)
+            + colors.black(self.right)
+            + colors.black(self.tail),
+        ]
+
         return ' '.join(parts)
 
 

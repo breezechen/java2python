@@ -19,16 +19,20 @@ class Config(object):
 
     def last(self, key, default=None):
         """ Returns the value at the key from the last config defining it. """
-        for config in reversed(self.configs):
-            if hasattr(config, key):
-                return getattr(config, key)
-        return default
+        return next(
+            (
+                getattr(config, key)
+                for config in reversed(self.configs)
+                if hasattr(config, key)
+            ),
+            default,
+        )
 
     @staticmethod
     def load(name):
         """ Imports and returns a module from dotted form or filename. """
-        if path.exists(name) and path.isfile(name):
-            mod = load_source(str(hash(name)), name)
-        else:
-            mod = reduce(getattr, name.split('.')[1:], __import__(name))
-        return mod
+        return (
+            load_source(str(hash(name)), name)
+            if path.exists(name) and path.isfile(name)
+            else reduce(getattr, name.split('.')[1:], __import__(name))
+        )

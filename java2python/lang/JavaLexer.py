@@ -227,9 +227,6 @@ class JavaLexer(Lexer):
             _type = AND
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:7:5: ( '&' )
-            # Java.g:7:7: '&'
-            pass 
             self.match(38)
 
 
@@ -252,9 +249,6 @@ class JavaLexer(Lexer):
             _type = AND_ASSIGN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:8:12: ( '&=' )
-            # Java.g:8:14: '&='
-            pass 
             self.match("&=")
 
 
@@ -277,9 +271,6 @@ class JavaLexer(Lexer):
             _type = ASSIGN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:9:8: ( '=' )
-            # Java.g:9:10: '='
-            pass 
             self.match(61)
 
 
@@ -302,9 +293,6 @@ class JavaLexer(Lexer):
             _type = AT
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:10:4: ( '@' )
-            # Java.g:10:6: '@'
-            pass 
             self.match(64)
 
 
@@ -327,9 +315,6 @@ class JavaLexer(Lexer):
             _type = BIT_SHIFT_RIGHT
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:11:17: ( '>>>' )
-            # Java.g:11:19: '>>>'
-            pass 
             self.match(">>>")
 
 
@@ -352,9 +337,6 @@ class JavaLexer(Lexer):
             _type = BIT_SHIFT_RIGHT_ASSIGN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:12:24: ( '>>>=' )
-            # Java.g:12:26: '>>>='
-            pass 
             self.match(">>>=")
 
 
@@ -377,9 +359,6 @@ class JavaLexer(Lexer):
             _type = COLON
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:13:7: ( ':' )
-            # Java.g:13:9: ':'
-            pass 
             self.match(58)
 
 
@@ -402,9 +381,6 @@ class JavaLexer(Lexer):
             _type = COMMA
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:14:7: ( ',' )
-            # Java.g:14:9: ','
-            pass 
             self.match(44)
 
 
@@ -427,9 +403,6 @@ class JavaLexer(Lexer):
             _type = DEC
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:15:5: ( '--' )
-            # Java.g:15:7: '--'
-            pass 
             self.match("--")
 
 
@@ -452,9 +425,6 @@ class JavaLexer(Lexer):
             _type = DIV
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:16:5: ( '/' )
-            # Java.g:16:7: '/'
-            pass 
             self.match(47)
 
 
@@ -477,9 +447,6 @@ class JavaLexer(Lexer):
             _type = DIV_ASSIGN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:17:12: ( '/=' )
-            # Java.g:17:14: '/='
-            pass 
             self.match("/=")
 
 
@@ -502,9 +469,6 @@ class JavaLexer(Lexer):
             _type = DOT
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:18:5: ( '.' )
-            # Java.g:18:7: '.'
-            pass 
             self.match(46)
 
 
@@ -527,9 +491,6 @@ class JavaLexer(Lexer):
             _type = DOTSTAR
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:19:9: ( '.*' )
-            # Java.g:19:11: '.*'
-            pass 
             self.match(".*")
 
 
@@ -552,9 +513,6 @@ class JavaLexer(Lexer):
             _type = ELLIPSIS
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:20:10: ( '...' )
-            # Java.g:20:12: '...'
-            pass 
             self.match("...")
 
 
@@ -577,9 +535,6 @@ class JavaLexer(Lexer):
             _type = EQUAL
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:21:7: ( '==' )
-            # Java.g:21:9: '=='
-            pass 
             self.match("==")
 
 
@@ -602,9 +557,6 @@ class JavaLexer(Lexer):
             _type = GREATER_OR_EQUAL
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:22:18: ( '>=' )
-            # Java.g:22:20: '>='
-            pass 
             self.match(">=")
 
 
@@ -627,9 +579,6 @@ class JavaLexer(Lexer):
             _type = GREATER_THAN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:23:14: ( '>' )
-            # Java.g:23:16: '>'
-            pass 
             self.match(62)
 
 
@@ -652,9 +601,6 @@ class JavaLexer(Lexer):
             _type = INC
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:24:5: ( '++' )
-            # Java.g:24:7: '++'
-            pass 
             self.match("++")
 
 
@@ -677,9 +623,6 @@ class JavaLexer(Lexer):
             _type = LBRACK
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:25:8: ( '[' )
-            # Java.g:25:10: '['
-            pass 
             self.match(91)
 
 
@@ -702,9 +645,6 @@ class JavaLexer(Lexer):
             _type = LCURLY
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:26:8: ( '{' )
-            # Java.g:26:10: '{'
-            pass 
             self.match(123)
 
 
@@ -727,9 +667,6 @@ class JavaLexer(Lexer):
             _type = LESS_OR_EQUAL
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:27:15: ( '<=' )
-            # Java.g:27:17: '<='
-            pass 
             self.match("<=")
 
 
@@ -752,9 +689,6 @@ class JavaLexer(Lexer):
             _type = LESS_THAN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:28:11: ( '<' )
-            # Java.g:28:13: '<'
-            pass 
             self.match(60)
 
 
@@ -777,9 +711,6 @@ class JavaLexer(Lexer):
             _type = LOGICAL_AND
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:29:13: ( '&&' )
-            # Java.g:29:15: '&&'
-            pass 
             self.match("&&")
 
 
@@ -802,9 +733,6 @@ class JavaLexer(Lexer):
             _type = LOGICAL_NOT
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:30:13: ( '!' )
-            # Java.g:30:15: '!'
-            pass 
             self.match(33)
 
 
@@ -827,9 +755,6 @@ class JavaLexer(Lexer):
             _type = LOGICAL_OR
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:31:12: ( '||' )
-            # Java.g:31:14: '||'
-            pass 
             self.match("||")
 
 
@@ -852,9 +777,6 @@ class JavaLexer(Lexer):
             _type = LPAREN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:32:8: ( '(' )
-            # Java.g:32:10: '('
-            pass 
             self.match(40)
 
 
@@ -877,9 +799,6 @@ class JavaLexer(Lexer):
             _type = MINUS
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:33:7: ( '-' )
-            # Java.g:33:9: '-'
-            pass 
             self.match(45)
 
 
@@ -902,9 +821,6 @@ class JavaLexer(Lexer):
             _type = MINUS_ASSIGN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:34:14: ( '-=' )
-            # Java.g:34:16: '-='
-            pass 
             self.match("-=")
 
 
@@ -927,9 +843,6 @@ class JavaLexer(Lexer):
             _type = MOD
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:35:5: ( '%' )
-            # Java.g:35:7: '%'
-            pass 
             self.match(37)
 
 
@@ -952,9 +865,6 @@ class JavaLexer(Lexer):
             _type = MOD_ASSIGN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:36:12: ( '%=' )
-            # Java.g:36:14: '%='
-            pass 
             self.match("%=")
 
 
@@ -977,9 +887,6 @@ class JavaLexer(Lexer):
             _type = NOT
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:37:5: ( '~' )
-            # Java.g:37:7: '~'
-            pass 
             self.match(126)
 
 
@@ -1002,9 +909,6 @@ class JavaLexer(Lexer):
             _type = NOT_EQUAL
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:38:11: ( '!=' )
-            # Java.g:38:13: '!='
-            pass 
             self.match("!=")
 
 
@@ -1027,9 +931,6 @@ class JavaLexer(Lexer):
             _type = OR
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:39:4: ( '|' )
-            # Java.g:39:6: '|'
-            pass 
             self.match(124)
 
 
@@ -1052,9 +953,6 @@ class JavaLexer(Lexer):
             _type = OR_ASSIGN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:40:11: ( '|=' )
-            # Java.g:40:13: '|='
-            pass 
             self.match("|=")
 
 
@@ -1077,9 +975,6 @@ class JavaLexer(Lexer):
             _type = PLUS
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:41:6: ( '+' )
-            # Java.g:41:8: '+'
-            pass 
             self.match(43)
 
 
@@ -1102,9 +997,6 @@ class JavaLexer(Lexer):
             _type = PLUS_ASSIGN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:42:13: ( '+=' )
-            # Java.g:42:15: '+='
-            pass 
             self.match("+=")
 
 
@@ -1127,9 +1019,6 @@ class JavaLexer(Lexer):
             _type = QUESTION
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:43:10: ( '?' )
-            # Java.g:43:12: '?'
-            pass 
             self.match(63)
 
 
@@ -1152,9 +1041,6 @@ class JavaLexer(Lexer):
             _type = RBRACK
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:44:8: ( ']' )
-            # Java.g:44:10: ']'
-            pass 
             self.match(93)
 
 
@@ -1177,9 +1063,6 @@ class JavaLexer(Lexer):
             _type = RCURLY
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:45:8: ( '}' )
-            # Java.g:45:10: '}'
-            pass 
             self.match(125)
 
 
@@ -1202,9 +1085,6 @@ class JavaLexer(Lexer):
             _type = RPAREN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:46:8: ( ')' )
-            # Java.g:46:10: ')'
-            pass 
             self.match(41)
 
 
@@ -1227,9 +1107,6 @@ class JavaLexer(Lexer):
             _type = SEMI
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:47:6: ( ';' )
-            # Java.g:47:8: ';'
-            pass 
             self.match(59)
 
 
@@ -1252,9 +1129,6 @@ class JavaLexer(Lexer):
             _type = SHIFT_LEFT
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:48:12: ( '<<' )
-            # Java.g:48:14: '<<'
-            pass 
             self.match("<<")
 
 
@@ -1277,9 +1151,6 @@ class JavaLexer(Lexer):
             _type = SHIFT_LEFT_ASSIGN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:49:19: ( '<<=' )
-            # Java.g:49:21: '<<='
-            pass 
             self.match("<<=")
 
 
@@ -1302,9 +1173,6 @@ class JavaLexer(Lexer):
             _type = SHIFT_RIGHT
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:50:13: ( '>>' )
-            # Java.g:50:15: '>>'
-            pass 
             self.match(">>")
 
 
@@ -1327,9 +1195,6 @@ class JavaLexer(Lexer):
             _type = SHIFT_RIGHT_ASSIGN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:51:20: ( '>>=' )
-            # Java.g:51:22: '>>='
-            pass 
             self.match(">>=")
 
 
@@ -1352,9 +1217,6 @@ class JavaLexer(Lexer):
             _type = STAR
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:52:6: ( '*' )
-            # Java.g:52:8: '*'
-            pass 
             self.match(42)
 
 
@@ -1377,9 +1239,6 @@ class JavaLexer(Lexer):
             _type = STAR_ASSIGN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:53:13: ( '*=' )
-            # Java.g:53:15: '*='
-            pass 
             self.match("*=")
 
 
@@ -1402,9 +1261,6 @@ class JavaLexer(Lexer):
             _type = XOR
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:54:5: ( '^' )
-            # Java.g:54:7: '^'
-            pass 
             self.match(94)
 
 
@@ -1427,9 +1283,6 @@ class JavaLexer(Lexer):
             _type = XOR_ASSIGN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:55:12: ( '^=' )
-            # Java.g:55:14: '^='
-            pass 
             self.match("^=")
 
 
@@ -1452,9 +1305,6 @@ class JavaLexer(Lexer):
             _type = ABSTRACT
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:56:10: ( 'abstract' )
-            # Java.g:56:12: 'abstract'
-            pass 
             self.match("abstract")
 
 
@@ -1477,9 +1327,6 @@ class JavaLexer(Lexer):
             _type = ASSERT
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:57:8: ( 'assert' )
-            # Java.g:57:10: 'assert'
-            pass 
             self.match("assert")
 
 
@@ -1502,9 +1349,6 @@ class JavaLexer(Lexer):
             _type = BOOLEAN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:58:9: ( 'boolean' )
-            # Java.g:58:11: 'boolean'
-            pass 
             self.match("boolean")
 
 
@@ -1527,9 +1371,6 @@ class JavaLexer(Lexer):
             _type = BREAK
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:59:7: ( 'break' )
-            # Java.g:59:9: 'break'
-            pass 
             self.match("break")
 
 
@@ -1552,9 +1393,6 @@ class JavaLexer(Lexer):
             _type = BYTE
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:60:6: ( 'byte' )
-            # Java.g:60:8: 'byte'
-            pass 
             self.match("byte")
 
 
@@ -1577,9 +1415,6 @@ class JavaLexer(Lexer):
             _type = CASE
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:61:6: ( 'case' )
-            # Java.g:61:8: 'case'
-            pass 
             self.match("case")
 
 
@@ -1602,9 +1437,6 @@ class JavaLexer(Lexer):
             _type = CATCH
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:62:7: ( 'catch' )
-            # Java.g:62:9: 'catch'
-            pass 
             self.match("catch")
 
 
@@ -1627,9 +1459,6 @@ class JavaLexer(Lexer):
             _type = CHAR
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:63:6: ( 'char' )
-            # Java.g:63:8: 'char'
-            pass 
             self.match("char")
 
 
@@ -1652,9 +1481,6 @@ class JavaLexer(Lexer):
             _type = CLASS
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:64:7: ( 'class' )
-            # Java.g:64:9: 'class'
-            pass 
             self.match("class")
 
 
@@ -1677,9 +1503,6 @@ class JavaLexer(Lexer):
             _type = CONTINUE
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:65:10: ( 'continue' )
-            # Java.g:65:12: 'continue'
-            pass 
             self.match("continue")
 
 
@@ -1702,9 +1525,6 @@ class JavaLexer(Lexer):
             _type = DEFAULT
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:66:9: ( 'default' )
-            # Java.g:66:11: 'default'
-            pass 
             self.match("default")
 
 
@@ -1727,9 +1547,6 @@ class JavaLexer(Lexer):
             _type = DO
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:67:4: ( 'do' )
-            # Java.g:67:6: 'do'
-            pass 
             self.match("do")
 
 
@@ -1752,9 +1569,6 @@ class JavaLexer(Lexer):
             _type = DOUBLE
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:68:8: ( 'double' )
-            # Java.g:68:10: 'double'
-            pass 
             self.match("double")
 
 
@@ -1777,9 +1591,6 @@ class JavaLexer(Lexer):
             _type = ELSE
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:69:6: ( 'else' )
-            # Java.g:69:8: 'else'
-            pass 
             self.match("else")
 
 
@@ -1802,9 +1613,6 @@ class JavaLexer(Lexer):
             _type = ENUM
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:70:6: ( 'enum' )
-            # Java.g:70:8: 'enum'
-            pass 
             self.match("enum")
 
 
@@ -1827,9 +1635,6 @@ class JavaLexer(Lexer):
             _type = EXTENDS
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:71:9: ( 'extends' )
-            # Java.g:71:11: 'extends'
-            pass 
             self.match("extends")
 
 
@@ -1852,9 +1657,6 @@ class JavaLexer(Lexer):
             _type = FALSE
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:72:7: ( 'false' )
-            # Java.g:72:9: 'false'
-            pass 
             self.match("false")
 
 
@@ -1877,9 +1679,6 @@ class JavaLexer(Lexer):
             _type = FINAL
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:73:7: ( 'final' )
-            # Java.g:73:9: 'final'
-            pass 
             self.match("final")
 
 
@@ -1902,9 +1701,6 @@ class JavaLexer(Lexer):
             _type = FINALLY
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:74:9: ( 'finally' )
-            # Java.g:74:11: 'finally'
-            pass 
             self.match("finally")
 
 
@@ -1927,9 +1723,6 @@ class JavaLexer(Lexer):
             _type = FLOAT
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:75:7: ( 'float' )
-            # Java.g:75:9: 'float'
-            pass 
             self.match("float")
 
 
@@ -1952,9 +1745,6 @@ class JavaLexer(Lexer):
             _type = FOR
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:76:5: ( 'for' )
-            # Java.g:76:7: 'for'
-            pass 
             self.match("for")
 
 
@@ -1977,9 +1767,6 @@ class JavaLexer(Lexer):
             _type = IF
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:77:4: ( 'if' )
-            # Java.g:77:6: 'if'
-            pass 
             self.match("if")
 
 
@@ -2002,9 +1789,6 @@ class JavaLexer(Lexer):
             _type = IMPLEMENTS
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:78:12: ( 'implements' )
-            # Java.g:78:14: 'implements'
-            pass 
             self.match("implements")
 
 
@@ -2027,9 +1811,6 @@ class JavaLexer(Lexer):
             _type = INSTANCEOF
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:79:12: ( 'instanceof' )
-            # Java.g:79:14: 'instanceof'
-            pass 
             self.match("instanceof")
 
 
@@ -2052,9 +1833,6 @@ class JavaLexer(Lexer):
             _type = INTERFACE
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:80:11: ( 'interface' )
-            # Java.g:80:13: 'interface'
-            pass 
             self.match("interface")
 
 
@@ -2077,9 +1855,6 @@ class JavaLexer(Lexer):
             _type = IMPORT
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:81:8: ( 'import' )
-            # Java.g:81:10: 'import'
-            pass 
             self.match("import")
 
 
@@ -2102,9 +1877,6 @@ class JavaLexer(Lexer):
             _type = INT
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:82:5: ( 'int' )
-            # Java.g:82:7: 'int'
-            pass 
             self.match("int")
 
 
@@ -2127,9 +1899,6 @@ class JavaLexer(Lexer):
             _type = LONG
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:83:6: ( 'long' )
-            # Java.g:83:8: 'long'
-            pass 
             self.match("long")
 
 
@@ -2152,9 +1921,6 @@ class JavaLexer(Lexer):
             _type = NATIVE
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:84:8: ( 'native' )
-            # Java.g:84:10: 'native'
-            pass 
             self.match("native")
 
 
@@ -2177,9 +1943,6 @@ class JavaLexer(Lexer):
             _type = NEW
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:85:5: ( 'new' )
-            # Java.g:85:7: 'new'
-            pass 
             self.match("new")
 
 
@@ -2202,9 +1965,6 @@ class JavaLexer(Lexer):
             _type = NULL
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:86:6: ( 'null' )
-            # Java.g:86:8: 'null'
-            pass 
             self.match("null")
 
 
@@ -2227,9 +1987,6 @@ class JavaLexer(Lexer):
             _type = PACKAGE
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:87:9: ( 'package' )
-            # Java.g:87:11: 'package'
-            pass 
             self.match("package")
 
 
@@ -2252,9 +2009,6 @@ class JavaLexer(Lexer):
             _type = PRIVATE
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:88:9: ( 'private' )
-            # Java.g:88:11: 'private'
-            pass 
             self.match("private")
 
 
@@ -2277,9 +2031,6 @@ class JavaLexer(Lexer):
             _type = PROTECTED
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:89:11: ( 'protected' )
-            # Java.g:89:13: 'protected'
-            pass 
             self.match("protected")
 
 
@@ -2302,9 +2053,6 @@ class JavaLexer(Lexer):
             _type = PUBLIC
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:90:8: ( 'public' )
-            # Java.g:90:10: 'public'
-            pass 
             self.match("public")
 
 
@@ -2327,9 +2075,6 @@ class JavaLexer(Lexer):
             _type = RETURN
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:91:8: ( 'return' )
-            # Java.g:91:10: 'return'
-            pass 
             self.match("return")
 
 
@@ -2352,9 +2097,6 @@ class JavaLexer(Lexer):
             _type = SHORT
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:92:7: ( 'short' )
-            # Java.g:92:9: 'short'
-            pass 
             self.match("short")
 
 
@@ -2377,9 +2119,6 @@ class JavaLexer(Lexer):
             _type = STATIC
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:93:8: ( 'static' )
-            # Java.g:93:10: 'static'
-            pass 
             self.match("static")
 
 
@@ -2402,9 +2141,6 @@ class JavaLexer(Lexer):
             _type = STRICTFP
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:94:10: ( 'strictfp' )
-            # Java.g:94:12: 'strictfp'
-            pass 
             self.match("strictfp")
 
 
@@ -2427,9 +2163,6 @@ class JavaLexer(Lexer):
             _type = SUPER
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:95:7: ( 'super' )
-            # Java.g:95:9: 'super'
-            pass 
             self.match("super")
 
 
@@ -2452,9 +2185,6 @@ class JavaLexer(Lexer):
             _type = SWITCH
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:96:8: ( 'switch' )
-            # Java.g:96:10: 'switch'
-            pass 
             self.match("switch")
 
 
@@ -2477,9 +2207,6 @@ class JavaLexer(Lexer):
             _type = SYNCHRONIZED
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:97:14: ( 'synchronized' )
-            # Java.g:97:16: 'synchronized'
-            pass 
             self.match("synchronized")
 
 
@@ -2502,9 +2229,6 @@ class JavaLexer(Lexer):
             _type = THIS
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:98:6: ( 'this' )
-            # Java.g:98:8: 'this'
-            pass 
             self.match("this")
 
 
@@ -2527,9 +2251,6 @@ class JavaLexer(Lexer):
             _type = THROW
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:99:7: ( 'throw' )
-            # Java.g:99:9: 'throw'
-            pass 
             self.match("throw")
 
 
@@ -2552,9 +2273,6 @@ class JavaLexer(Lexer):
             _type = THROWS
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:100:8: ( 'throws' )
-            # Java.g:100:10: 'throws'
-            pass 
             self.match("throws")
 
 
@@ -2577,9 +2295,6 @@ class JavaLexer(Lexer):
             _type = TRANSIENT
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:101:11: ( 'transient' )
-            # Java.g:101:13: 'transient'
-            pass 
             self.match("transient")
 
 
@@ -2602,9 +2317,6 @@ class JavaLexer(Lexer):
             _type = TRUE
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:102:6: ( 'true' )
-            # Java.g:102:8: 'true'
-            pass 
             self.match("true")
 
 
@@ -2627,9 +2339,6 @@ class JavaLexer(Lexer):
             _type = TRY
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:103:5: ( 'try' )
-            # Java.g:103:7: 'try'
-            pass 
             self.match("try")
 
 
@@ -2652,9 +2361,6 @@ class JavaLexer(Lexer):
             _type = VOID
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:104:6: ( 'void' )
-            # Java.g:104:8: 'void'
-            pass 
             self.match("void")
 
 
@@ -2677,9 +2383,6 @@ class JavaLexer(Lexer):
             _type = VOLATILE
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:105:10: ( 'volatile' )
-            # Java.g:105:12: 'volatile'
-            pass 
             self.match("volatile")
 
 
@@ -2702,9 +2405,6 @@ class JavaLexer(Lexer):
             _type = WHILE
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:106:7: ( 'while' )
-            # Java.g:106:9: 'while'
-            pass 
             self.match("while")
 
 
@@ -2727,11 +2427,8 @@ class JavaLexer(Lexer):
             _type = HEX_LITERAL
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:985:13: ( '0' ( 'x' | 'X' ) ( HEX_DIGIT )+ ( INTEGER_TYPE_SUFFIX )? )
-            # Java.g:985:15: '0' ( 'x' | 'X' ) ( HEX_DIGIT )+ ( INTEGER_TYPE_SUFFIX )?
-            pass 
             self.match(48)
-            if self.input.LA(1) == 88 or self.input.LA(1) == 120:
+            if self.input.LA(1) in [88, 120]:
                 self.input.consume()
             else:
                 mse = MismatchedSetException(None, self.input)
@@ -2749,8 +2446,6 @@ class JavaLexer(Lexer):
 
 
                 if alt1 == 1:
-                    # Java.g:985:29: HEX_DIGIT
-                    pass 
                     self.mHEX_DIGIT()
 
 
@@ -2766,11 +2461,9 @@ class JavaLexer(Lexer):
             alt2 = 2
             LA2_0 = self.input.LA(1)
 
-            if (LA2_0 == 76 or LA2_0 == 108) :
+            if LA2_0 in [76, 108]:
                 alt2 = 1
             if alt2 == 1:
-                # Java.g:985:40: INTEGER_TYPE_SUFFIX
-                pass 
                 self.mINTEGER_TYPE_SUFFIX()
 
 
@@ -2796,9 +2489,6 @@ class JavaLexer(Lexer):
             _type = DECIMAL_LITERAL
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:987:17: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( INTEGER_TYPE_SUFFIX )? )
-            # Java.g:987:19: ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( INTEGER_TYPE_SUFFIX )?
-            pass 
             # Java.g:987:19: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             alt4 = 2
             LA4_0 = self.input.LA(1)
@@ -2813,14 +2503,10 @@ class JavaLexer(Lexer):
                 raise nvae
 
             if alt4 == 1:
-                # Java.g:987:20: '0'
-                pass 
                 self.match(48)
 
 
             elif alt4 == 2:
-                # Java.g:987:26: '1' .. '9' ( '0' .. '9' )*
-                pass 
                 self.matchRange(49, 57)
                 # Java.g:987:35: ( '0' .. '9' )*
                 while True: #loop3
@@ -2832,8 +2518,6 @@ class JavaLexer(Lexer):
 
 
                     if alt3 == 1:
-                        # Java.g:987:35: '0' .. '9'
-                        pass 
                         self.matchRange(48, 57)
 
 
@@ -2846,11 +2530,9 @@ class JavaLexer(Lexer):
             alt5 = 2
             LA5_0 = self.input.LA(1)
 
-            if (LA5_0 == 76 or LA5_0 == 108) :
+            if LA5_0 in [76, 108]:
                 alt5 = 1
             if alt5 == 1:
-                # Java.g:987:46: INTEGER_TYPE_SUFFIX
-                pass 
                 self.mINTEGER_TYPE_SUFFIX()
 
 
@@ -2876,9 +2558,6 @@ class JavaLexer(Lexer):
             _type = OCTAL_LITERAL
             _channel = DEFAULT_CHANNEL
 
-            # Java.g:989:15: ( '0' ( '0' .. '7' )+ ( INTEGER_TYPE_SUFFIX )? )
-            # Java.g:989:17: '0' ( '0' .. '7' )+ ( INTEGER_TYPE_SUFFIX )?
-            pass 
             self.match(48)
             # Java.g:989:21: ( '0' .. '7' )+
             cnt6 = 0
@@ -2891,8 +2570,6 @@ class JavaLexer(Lexer):
 
 
                 if alt6 == 1:
-                    # Java.g:989:22: '0' .. '7'
-                    pass 
                     self.matchRange(48, 55)
 
 
@@ -2908,11 +2585,9 @@ class JavaLexer(Lexer):
             alt7 = 2
             LA7_0 = self.input.LA(1)
 
-            if (LA7_0 == 76 or LA7_0 == 108) :
+            if LA7_0 in [76, 108]:
                 alt7 = 1
             if alt7 == 1:
-                # Java.g:989:33: INTEGER_TYPE_SUFFIX
-                pass 
                 self.mINTEGER_TYPE_SUFFIX()
 
 
@@ -2935,9 +2610,6 @@ class JavaLexer(Lexer):
     def mHEX_DIGIT(self, ):
 
         try:
-            # Java.g:992:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            # Java.g:992:13: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
-            pass 
             if (48 <= self.input.LA(1) <= 57) or (65 <= self.input.LA(1) <= 70) or (97 <= self.input.LA(1) <= 102):
                 self.input.consume()
             else:
@@ -2961,10 +2633,7 @@ class JavaLexer(Lexer):
     def mINTEGER_TYPE_SUFFIX(self, ):
 
         try:
-            # Java.g:995:21: ( ( 'l' | 'L' ) )
-            # Java.g:995:23: ( 'l' | 'L' )
-            pass 
-            if self.input.LA(1) == 76 or self.input.LA(1) == 108:
+            if self.input.LA(1) in [76, 108]:
                 self.input.consume()
             else:
                 mse = MismatchedSetException(None, self.input)
@@ -3004,21 +2673,17 @@ class JavaLexer(Lexer):
                 raise nvae
 
             if alt17 == 1:
-                # Java.g:998:9: ( '0' .. '9' )+ ( DOT ( '0' .. '9' )* ( EXPONENT )? ( FLOAT_TYPE_SUFFIX )? | EXPONENT ( FLOAT_TYPE_SUFFIX )? | FLOAT_TYPE_SUFFIX )
-                pass 
                 # Java.g:998:9: ( '0' .. '9' )+
                 cnt8 = 0
                 while True: #loop8
-                    alt8 = 2
                     LA8_0 = self.input.LA(1)
 
+                    alt8 = 2
                     if ((48 <= LA8_0 <= 57)) :
                         alt8 = 1
 
 
                     if alt8 == 1:
-                        # Java.g:998:10: '0' .. '9'
-                        pass 
                         self.matchRange(48, 57)
 
 
@@ -3030,14 +2695,13 @@ class JavaLexer(Lexer):
                         raise eee
 
                     cnt8 += 1
-                # Java.g:999:9: ( DOT ( '0' .. '9' )* ( EXPONENT )? ( FLOAT_TYPE_SUFFIX )? | EXPONENT ( FLOAT_TYPE_SUFFIX )? | FLOAT_TYPE_SUFFIX )
-                alt13 = 3
                 LA13 = self.input.LA(1)
+                alt13 = 3
                 if LA13 == 46:
                     alt13 = 1
-                elif LA13 == 69 or LA13 == 101:
+                elif LA13 in [69, 101]:
                     alt13 = 2
-                elif LA13 == 68 or LA13 == 70 or LA13 == 100 or LA13 == 102:
+                elif LA13 in [68, 70, 100, 102]:
                     alt13 = 3
                 else:
                     nvae = NoViableAltException("", 13, 0, self.input)
@@ -3045,48 +2709,34 @@ class JavaLexer(Lexer):
                     raise nvae
 
                 if alt13 == 1:
-                    # Java.g:1000:13: DOT ( '0' .. '9' )* ( EXPONENT )? ( FLOAT_TYPE_SUFFIX )?
-                    pass 
                     self.mDOT()
                     # Java.g:1000:17: ( '0' .. '9' )*
                     while True: #loop9
-                        alt9 = 2
                         LA9_0 = self.input.LA(1)
 
+                        alt9 = 2
                         if ((48 <= LA9_0 <= 57)) :
                             alt9 = 1
 
 
                         if alt9 == 1:
-                            # Java.g:1000:18: '0' .. '9'
-                            pass 
                             self.matchRange(48, 57)
 
 
                         else:
                             break #loop9
-                    # Java.g:1000:29: ( EXPONENT )?
-                    alt10 = 2
                     LA10_0 = self.input.LA(1)
 
-                    if (LA10_0 == 69 or LA10_0 == 101) :
-                        alt10 = 1
+                    alt10 = 1 if LA10_0 in [69, 101] else 2
                     if alt10 == 1:
-                        # Java.g:1000:29: EXPONENT
-                        pass 
                         self.mEXPONENT()
 
 
 
-                    # Java.g:1000:39: ( FLOAT_TYPE_SUFFIX )?
-                    alt11 = 2
                     LA11_0 = self.input.LA(1)
 
-                    if (LA11_0 == 68 or LA11_0 == 70 or LA11_0 == 100 or LA11_0 == 102) :
-                        alt11 = 1
+                    alt11 = 1 if LA11_0 in [68, 70, 100, 102] else 2
                     if alt11 == 1:
-                        # Java.g:1000:39: FLOAT_TYPE_SUFFIX
-                        pass 
                         self.mFLOAT_TYPE_SUFFIX()
 
 
@@ -3094,18 +2744,11 @@ class JavaLexer(Lexer):
 
 
                 elif alt13 == 2:
-                    # Java.g:1001:13: EXPONENT ( FLOAT_TYPE_SUFFIX )?
-                    pass 
                     self.mEXPONENT()
-                    # Java.g:1001:22: ( FLOAT_TYPE_SUFFIX )?
-                    alt12 = 2
                     LA12_0 = self.input.LA(1)
 
-                    if (LA12_0 == 68 or LA12_0 == 70 or LA12_0 == 100 or LA12_0 == 102) :
-                        alt12 = 1
+                    alt12 = 1 if LA12_0 in [68, 70, 100, 102] else 2
                     if alt12 == 1:
-                        # Java.g:1001:22: FLOAT_TYPE_SUFFIX
-                        pass 
                         self.mFLOAT_TYPE_SUFFIX()
 
 
@@ -3113,8 +2756,6 @@ class JavaLexer(Lexer):
 
 
                 elif alt13 == 3:
-                    # Java.g:1002:13: FLOAT_TYPE_SUFFIX
-                    pass 
                     self.mFLOAT_TYPE_SUFFIX()
 
 
@@ -3122,22 +2763,18 @@ class JavaLexer(Lexer):
 
 
             elif alt17 == 2:
-                # Java.g:1004:9: DOT ( '0' .. '9' )+ ( EXPONENT )? ( FLOAT_TYPE_SUFFIX )?
-                pass 
                 self.mDOT()
                 # Java.g:1004:13: ( '0' .. '9' )+
                 cnt14 = 0
                 while True: #loop14
-                    alt14 = 2
                     LA14_0 = self.input.LA(1)
 
+                    alt14 = 2
                     if ((48 <= LA14_0 <= 57)) :
                         alt14 = 1
 
 
                     if alt14 == 1:
-                        # Java.g:1004:14: '0' .. '9'
-                        pass 
                         self.matchRange(48, 57)
 
 
@@ -3149,15 +2786,10 @@ class JavaLexer(Lexer):
                         raise eee
 
                     cnt14 += 1
-                # Java.g:1004:25: ( EXPONENT )?
-                alt15 = 2
                 LA15_0 = self.input.LA(1)
 
-                if (LA15_0 == 69 or LA15_0 == 101) :
-                    alt15 = 1
+                alt15 = 1 if LA15_0 in [69, 101] else 2
                 if alt15 == 1:
-                    # Java.g:1004:25: EXPONENT
-                    pass 
                     self.mEXPONENT()
 
 
@@ -3166,11 +2798,9 @@ class JavaLexer(Lexer):
                 alt16 = 2
                 LA16_0 = self.input.LA(1)
 
-                if (LA16_0 == 68 or LA16_0 == 70 or LA16_0 == 100 or LA16_0 == 102) :
+                if LA16_0 in [68, 70, 100, 102]:
                     alt16 = 1
                 if alt16 == 1:
-                    # Java.g:1004:35: FLOAT_TYPE_SUFFIX
-                    pass 
                     self.mFLOAT_TYPE_SUFFIX()
 
 

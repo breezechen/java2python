@@ -31,7 +31,7 @@ def keywordSafeIdent(node, config, invalid=invalidPythonNames()):
     """ Validates and possibly renames a Java identifier. """
     ident = node.token.text
     if ident in invalid:
-        node.token.text = '%s_' % ident
+        node.token.text = f'{ident}_'
 
 
 def makeConst(v):
@@ -60,7 +60,7 @@ def syntaxSafeFloatLiteral(node, config):
     """ Ensures a Java float literal is a valid Python float literal. """
     value = node.token.text
     if value.startswith('.'):
-        value = '0' + value
+        value = f'0{value}'
     if value.lower().endswith(('f', 'd')):
         value = value[:-1]
     node.token.text = value
@@ -91,7 +91,7 @@ def lengthToLen(node, config):
     method = dot.parent
 
     ident = dot.firstChildOfType(tokens.IDENT)
-    ident.token.text = 'len({})'.format(ident.text)
+    ident.token.text = f'len({ident.text})'
 
     expr = method.parent
     expr.children.remove(method)
@@ -149,7 +149,7 @@ def formatString(node, config):
     dot = node.parent
     method = dot.parent
     arg_list = method.firstChildOfType(tokens.ARGUMENT_LIST)
-    call_args = [arg for arg in arg_list.childrenOfType(tokens.EXPR)]
+    call_args = list(arg_list.childrenOfType(tokens.EXPR))
     args = [arg.firstChildOfType(tokens.IDENT) for arg in call_args[1:]]
 
     # Translate format syntax (if format == string_literal)
@@ -165,12 +165,16 @@ def formatString(node, config):
         format = call_args[0].firstChild()
         if format.type == tokens.IDENT:
             # String variable
-            warn('Formatting string %s is not automatically translated.'
-                % str(format.token.text))
+            warn(
+                f'Formatting string {str(format.token.text)} is not automatically translated.'
+            )
+
         else:
             # Function that returns String
-            warn('Formatting string returned by %s() is not automatically translated.'
-                % str(format.firstChildOfType(tokens.IDENT).token.text))
+            warn(
+                f'Formatting string returned by {str(format.firstChildOfType(tokens.IDENT).token.text)}() is not automatically translated.'
+            )
+
 
     left_ident = dot.children[0]
     right_ident = dot.children[1]

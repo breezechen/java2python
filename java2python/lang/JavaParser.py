@@ -18807,9 +18807,6 @@ class JavaParser(Parser):
 
     # $ANTLR start "synpred14_Java"
     def synpred14_Java_fragment(self, ):
-        # Java.g:286:9: ( GREATER_THAN )
-        # Java.g:286:9: GREATER_THAN
-        pass 
         self.match(self.input, GREATER_THAN, self.FOLLOW_GREATER_THAN_in_synpred14_Java5045)
 
 
@@ -18819,9 +18816,6 @@ class JavaParser(Parser):
 
     # $ANTLR start "synpred15_Java"
     def synpred15_Java_fragment(self, ):
-        # Java.g:287:9: ( SHIFT_RIGHT )
-        # Java.g:287:9: SHIFT_RIGHT
-        pass 
         self.match(self.input, SHIFT_RIGHT, self.FOLLOW_SHIFT_RIGHT_in_synpred15_Java5055)
 
 
@@ -18831,9 +18825,6 @@ class JavaParser(Parser):
 
     # $ANTLR start "synpred16_Java"
     def synpred16_Java_fragment(self, ):
-        # Java.g:288:9: ( BIT_SHIFT_RIGHT )
-        # Java.g:288:9: BIT_SHIFT_RIGHT
-        pass 
         self.match(self.input, BIT_SHIFT_RIGHT, self.FOLLOW_BIT_SHIFT_RIGHT_in_synpred16_Java5065)
 
 
@@ -18843,9 +18834,6 @@ class JavaParser(Parser):
 
     # $ANTLR start "synpred17_Java"
     def synpred17_Java_fragment(self, ):
-        # Java.g:293:15: ( bound )
-        # Java.g:293:15: bound
-        pass 
         self._state.following.append(self.FOLLOW_bound_in_synpred17_Java5095)
         self.bound()
 
@@ -18858,9 +18846,6 @@ class JavaParser(Parser):
 
     # $ANTLR start "synpred32_Java"
     def synpred32_Java_fragment(self, ):
-        # Java.g:350:9: ( STATIC block )
-        # Java.g:350:9: STATIC block
-        pass 
         self.match(self.input, STATIC, self.FOLLOW_STATIC_in_synpred32_Java5595)
         self._state.following.append(self.FOLLOW_block_in_synpred32_Java5597)
         self.block()

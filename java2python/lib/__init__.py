@@ -20,10 +20,10 @@ class FS(object):
         """ Returns a format string for the given operation. """
         l, r = cls.l, cls.r
         if op == '>>>':
-            return '(' + l + ' & (2**32+' + l + ')) >> ' + r
+            return f'({l} & (2**32+{l})) >> {r}'
         if op == '>>>=':
-            return l + ' = bsr(' + l + ', ' + r + ')'
-        return l + ' ' + op + ' ' + r
+            return f'{l} = bsr({l}, {r})'
+        return f'{l} {op} {r}'
 
 
 escapes = {

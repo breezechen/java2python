@@ -170,18 +170,15 @@ class LocalTree(CommonTree):
             token, indent = root.token, '    ' * offset
             start, stop = root.tokenStartIndex, root.tokenStopIndex
             idxes, ttyp = '', tokens.map.get(token.type, '?')
-            line = token.line
-            if start and stop and start == stop:
-                idxes = 'start={}'.format(start)
-            elif start and stop:
-                idxes = 'start={}, stop={}'.format(start, stop)
-            if line:
-                idxes = 'line={}{}{}'.format(line, ', ' if idxes else '', idxes)
-            idxes = ' [{}]'.format(idxes) if idxes else ''
+            if start and stop:
+                idxes = f'start={start}' if start == stop else f'start={start}, stop={stop}'
+            if line := token.line:
+                idxes = f"line={line}{', ' if idxes else ''}{idxes}"
+            idxes = f' [{idxes}]' if idxes else ''
             idxes = colors.black(idxes)
             args = [indent, self.colorType(ttyp), '', idxes, '']
             if extras(token.text, ttyp):
-                args[2] = ' ' + self.colorText(ttyp, token.text)
+                args[2] = f' {self.colorText(ttyp, token.text)}'
             for com in self.selectComments(start, seen):
                 for line in self.colorComments(com):
                     print >> fd, '{0}{1}'.format(indent, line)
@@ -209,8 +206,7 @@ class LocalTree(CommonTree):
         for child in self.children:
             if pred(child):
                 yield child
-            for sub in child.findChildren(pred):
-                yield sub
+            yield from child.findChildren(pred)
 
     def findChildrenOfType(self, type):
         """ Depth-first search that yields nodes of the given type. """
@@ -220,7 +216,7 @@ class LocalTree(CommonTree):
         """ Returns the first child of this tree or the default. """
         try:
             return self.children[0]
-        except (IndexError, ):
+        except IndexError:
             return default
 
     def firstChildOfType(self, type, default=None):
@@ -255,7 +251,7 @@ class LocalTree(CommonTree):
     def selectComments(self, stop, memo):
         """ Returns the comment tokens for this tree up to the given index. """
         pred = lambda k:k.type in tokens.commentTypes and k.index not in memo
-        ctoks = [t for t in self.parser.input.tokens[0:stop] if pred(t)]
+        ctoks = [t for t in self.parser.input.tokens[:stop] if pred(t)]
         memo.update(t.index for t in ctoks)
         return ctoks
 
